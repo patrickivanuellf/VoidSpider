@@ -1,7 +1,7 @@
 {
   "name": "laba-laba-pemindai",
   "version": "9.6.0",
-  "description": "Pemindai audit keamanan + deteksi malware berbasis ML (logistik), secret gateway ID, ZAP, stack fingerprint. Buatan Indonesia.",
+  "description": "Pemindai audit keamanan + deteksi malware berbasis ML (logistik), secret gateway ID, ZAP, stack fingerprint.Indonesia.",
   "type": "module",
   "private": true,
   "scripts": {
