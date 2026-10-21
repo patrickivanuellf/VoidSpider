@@ -1,0 +1,31 @@
+{
+  "name": "laba-laba-pemindai",
+  "version": "9.6.0",
+  "description": "Pemindai audit keamanan + deteksi malware berbasis ML (logistik), secret gateway ID, ZAP, stack fingerprint. Buatan Indonesia.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "audit": "node server.js . --once --offline --fail-on tidak",
+    "eval": "node eval/run-ours.mjs && node eval/compare.mjs",
+    "train-ml": "node eval/train-ml.mjs"
+  },
+  "engines": {
+    "node": ">=18.14"
+  },
+  "dependencies": {
+    "acorn": "^8.19.0",
+    "acorn-walk": "^8.3.5",
+    "cheerio": "^1.0.0"
+  },
+  "keywords": [
+    "security",
+    "audit",
+    "zap",
+    "indonesia",
+    "pemindai",
+    "owasp"
+  ],
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,32 @@
+{
+ "laba-laba-pemindai": {
+  "tp": 21,
+  "fp": 0,
+  "fn": 0,
+  "tn": 14,
+  "precision": 1,
+  "recall": 1,
+  "f1": 1,
+  "fpr": 0
+ },
+ "gitleaks": {
+  "tp": 7,
+  "fp": 1,
+  "fn": 1,
+  "tn": 4,
+  "precision": 0.875,
+  "recall": 0.875,
+  "f1": 0.875,
+  "fpr": 0.2
+ },
+ "semgrep": {
+  "tp": 9,
+  "fp": 0,
+  "fn": 4,
+  "tn": 9,
+  "precision": 1,
+  "recall": 0.6923076923076923,
+  "f1": 0.8181818181818181,
+  "fpr": 0
+ }
+}

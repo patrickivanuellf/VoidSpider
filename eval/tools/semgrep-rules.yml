@@ -1,0 +1,67 @@
+rules:
+  - id: js-exec-tainted
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "Tainted input reaches exec()"
+    patterns:
+      - pattern-either:
+          - pattern: exec($CMD)
+          - pattern: exec($CMD, ...)
+      - metavariable-pattern:
+          metavariable: $CMD
+          patterns:
+            - pattern-either:
+                - pattern: "'...' + $X"
+                - pattern: $X + '...'
+                - pattern: "`...${$X}...`"
+  - id: js-eval-tainted
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "Tainted input reaches eval()"
+    pattern-either:
+      - pattern: eval(req.body.$X)
+      - pattern: eval(req.query.$X)
+  - id: js-sqli-concat
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "SQL built via string concatenation/template with request input"
+    pattern-either:
+      - pattern: '$DB.query(`...${req.$PROP.$X}...`, ...)'
+      - pattern: $DB.query("..." + req.$PROP.$X, ...)
+  - id: js-xss-send-concat
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: "Unescaped request input sent as HTML response"
+    pattern-either:
+      - pattern: res.send("..." + req.$PROP.$X + "...")
+      - pattern: 'res.send(`...${req.$PROP.$X}...`)'
+  - id: php-eval-superglobal
+    languages: [php]
+    severity: ERROR
+    message: "eval/assert/system on PHP superglobal"
+    pattern-either:
+      - pattern: eval(base64_decode($_POST[...]))
+      - pattern: system($_GET[...])
+      - pattern: eval(base64_decode($_REQUEST[...]))
+  - id: php-dynamic-call-superglobal
+    languages: [php]
+    severity: ERROR
+    message: "Dynamic function call sourced from request superglobal"
+    pattern-either:
+      - pattern: $F = $_POST[...]; $F(...);
+      - pattern: $_POST[...]($_POST[...]);
+  - id: generic-hardcoded-secret
+    languages: [javascript, typescript, python, php]
+    severity: WARNING
+    message: "Hardcoded credential-looking literal"
+    pattern-regex: '(?:password|secret|api[_-]?key|token)\s*[:=]\s*["\x27][A-Za-z0-9+/_.-]{12,}["\x27]'
+  - id: iac-privileged-compose
+    languages: [yaml]
+    severity: ERROR
+    message: "privileged: true in compose/manifest"
+    pattern-regex: 'privileged:\s*true'
+  - id: iac-terraform-open-cidr
+    languages: [generic]
+    severity: ERROR
+    message: "cidr_blocks open to 0.0.0.0/0"
+    pattern-regex: 'cidr_blocks\s*=\s*\[[^\]]*0\.0\.0\.0/0'

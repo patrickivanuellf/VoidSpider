@@ -1,0 +1,6 @@
+services:
+  app:
+    image: myapp:1.2.3
+    ports:
+      - "127.0.0.1:3000:3000"
+    restart: unless-stopped

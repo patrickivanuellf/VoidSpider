@@ -1,0 +1,10 @@
+[
+  {
+    "rule": "obfuscation",
+    "text": "Contoh aturan sendiri: kata TODO_HAPUS_SEBELUM_DEPLOY masih ada",
+    "ext": ["php", "js", "html"],
+    "all": ["TODO_HAPUS_SEBELUM_DEPLOY"],
+    "none": [],
+    "lvl": 1
+  }
+]

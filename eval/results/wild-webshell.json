@@ -1,0 +1,36 @@
+{
+ "total": 381,
+ "flagged": 294,
+ "recall": 0.7716535433070866,
+ "byRule": {
+  "secret": 63,
+  "code-eval": 330,
+  "code-exec": 401,
+  "webshell": 280,
+  "obfuscation": 113,
+  "code-sqli": 100,
+  "code-perm": 25,
+  "hidden-iframe": 10,
+  "code-lfi": 37,
+  "code-deser": 29,
+  "zerowidth": 1,
+  "secret-generic": 2
+ },
+ "missedSample": [
+  "antSword-shells/php1.php",
+  "antSword-shells/php2.php",
+  "antSword-shells/php3.php",
+  "caidao-shell/3802.php",
+  "caidao-shell/w-ob_start02.php",
+  "caidao-shell/z-2016-01-05.php",
+  "drag/mysql_1.php",
+  "fuzzdb-webshell/php/list.php",
+  "fuzzdb-webshell/php/up.php",
+  "jsp/cat/test.php",
+  "net-friend/ChatRoom/菊花聊天室.php",
+  "net-friend/php/moon.php",
+  "net-friend/可读写目录探测/PHP 搜索可读可写目录脚本.php",
+  "php/2020.08.20.01.php",
+  "php/2020.08.20.02.php"
+ ]
+}

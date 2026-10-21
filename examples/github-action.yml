@@ -1,0 +1,41 @@
+# Salin ke .github/workflows/audit.yml di repomu.
+# Audit statis berkas pada setiap push dan pull request, hasilnya tampil di tab Security > Code scanning.
+name: Audit keamanan
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 2 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # perlu riwayat penuh agar kunci lama di commit lama ikut diperiksa
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pasang laba-laba pemindai
+        run: |
+          git clone --depth 1 https://github.com/patrickivanuellf/laba-laba-pemindai.git /tmp/pemindai
+          cd /tmp/pemindai && npm ci
+      - name: Audit
+        run: node /tmp/pemindai/server.js . --once --sarif hasil.sarif --md laporan.md --fail-on kritis
+        continue-on-error: true
+        id: audit
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: hasil.sarif
+      - uses: actions/upload-artifact@v4
+        with:
+          name: laporan-audit
+          path: laporan.md
+      - name: Gagalkan build bila ada temuan kritis
+        if: steps.audit.outcome == 'failure'
+        run: exit 1

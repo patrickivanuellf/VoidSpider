@@ -1,0 +1,375 @@
+{
+ "tool": "laba-laba-pemindai",
+ "ms": 62,
+ "overall": {
+  "tp": 21,
+  "fp": 0,
+  "fn": 0,
+  "tn": 14,
+  "precision": 1,
+  "recall": 1,
+  "f1": 1,
+  "fpr": 0
+ },
+ "byCategory": {
+  "iac": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "tn": 2,
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "fpr": 0
+  },
+  "jwt": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "tn": 1,
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "fpr": 0
+  },
+  "secrets": {
+   "tp": 6,
+   "fp": 0,
+   "fn": 0,
+   "tn": 4,
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "fpr": 0
+  },
+  "taint": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "tn": 4,
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "fpr": 0
+  },
+  "webshell": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "tn": 3,
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "fpr": 0
+  }
+ },
+ "rows": [
+  {
+   "file": "iac/compose-safe-benign.yml",
+   "category": "iac",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "iac/privileged-real.yml",
+   "category": "iac",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "iac-priv:2",
+    "iac-priv:2",
+    "iac-priv:2",
+    "iac-port:1"
+   ]
+  },
+  {
+   "file": "iac/rbac-admin-real.yml",
+   "category": "iac",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "iac-priv:2"
+   ]
+  },
+  {
+   "file": "iac/tf-open-real.tf",
+   "category": "iac",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "iac-open:2",
+    "iac-open:1"
+   ]
+  },
+  {
+   "file": "iac/tf-scoped-benign.tf",
+   "category": "iac",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "jwt/alg-none-real.js",
+   "category": "jwt",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:0",
+    "jwt-none:2",
+    "jwt-noexp:1"
+   ]
+  },
+  {
+   "file": "jwt/good-benign.js",
+   "category": "jwt",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": [
+    "secret:0"
+   ]
+  },
+  {
+   "file": "jwt/noexp-real.js",
+   "category": "jwt",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:0",
+    "jwt-noexp:1",
+    "jwt-claim:1"
+   ]
+  },
+  {
+   "file": "secrets/aws-real.js",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:2"
+   ]
+  },
+  {
+   "file": "secrets/connstr-real.js",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:2"
+   ]
+  },
+  {
+   "file": "secrets/generic-apikey-real.js",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:1",
+    "secret-generic:1"
+   ]
+  },
+  {
+   "file": "secrets/github-real.sh",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:2",
+    "secret:1",
+    "secret-generic:1"
+   ]
+  },
+  {
+   "file": "secrets/placeholder-benign.js",
+   "category": "secrets",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "secrets/privatekey-real.pem",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "file-sensitive:1",
+    "secret:2"
+   ]
+  },
+  {
+   "file": "secrets/slug-benign.js",
+   "category": "secrets",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "secrets/stripe-real.py",
+   "category": "secrets",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "secret:2",
+    "secret-generic:1"
+   ]
+  },
+  {
+   "file": "secrets/uuid-benign.js",
+   "category": "secrets",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "secrets/version-benign.js",
+   "category": "secrets",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "taint/eval-real.js",
+   "category": "taint",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "code-eval:1",
+    "taint-eval:2"
+   ]
+  },
+  {
+   "file": "taint/exec-benign.js",
+   "category": "taint",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "taint/exec-real.js",
+   "category": "taint",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "code-exec:1",
+    "taint-exec:2"
+   ]
+  },
+  {
+   "file": "taint/path-real.js",
+   "category": "taint",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "taint-path:2"
+   ]
+  },
+  {
+   "file": "taint/sqli-benign.js",
+   "category": "taint",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "taint/sqli-real.js",
+   "category": "taint",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "code-sqli:1",
+    "taint-sqli:2"
+   ]
+  },
+  {
+   "file": "taint/static-benign.js",
+   "category": "taint",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "taint/xss-benign.js",
+   "category": "taint",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "taint/xss-real.js",
+   "category": "taint",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "taint-xss:2"
+   ]
+  },
+  {
+   "file": "webshell/base64-encode-benign.php",
+   "category": "webshell",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "webshell/basic-eval-real.php",
+   "category": "webshell",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "code-eval:1",
+    "webshell:2"
+   ]
+  },
+  {
+   "file": "webshell/dynamic-func-real.php",
+   "category": "webshell",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "webshell:2"
+   ]
+  },
+  {
+   "file": "webshell/form-handler-benign.php",
+   "category": "webshell",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "webshell/image-masquerade-real.gif",
+   "category": "webshell",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "webshell:2"
+   ]
+  },
+  {
+   "file": "webshell/system-get-real.php",
+   "category": "webshell",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "code-exec:1",
+    "webshell:2"
+   ]
+  },
+  {
+   "file": "webshell/upload-handler-benign.php",
+   "category": "webshell",
+   "expected_vulnerable": false,
+   "flagged": false,
+   "findings": []
+  },
+  {
+   "file": "webshell/wso-signature-real.txt",
+   "category": "webshell",
+   "expected_vulnerable": true,
+   "flagged": true,
+   "findings": [
+    "webshell:2"
+   ]
+  }
+ ]
+}

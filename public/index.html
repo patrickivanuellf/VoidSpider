@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Laba-laba Pemindai — Audit Keamanan (Indonesia)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<canvas id="c" role="img" aria-label="Peta gugus kata tiap halaman atau berkas. Makhluk berbadan oval di tengah menjulurkan tentakel manik-manik ke kata yang sedang dibaca. Gugus yang aman menyala biru, yang bermasalah menyala pink."></canvas>
+<div class="grid" aria-hidden="true"></div>
+<div id="tip" class="tip" hidden></div>
+
+<header class="hud-top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">◈</span>
+    <h1>laba-laba pemindai</h1><span class="badge-id" title="Dibuat di Indonesia">ID</span>
+    <span id="target" class="target"></span>
+  </div>
+  <div class="clocks" aria-label="Jam misi">
+    <span><i>T+</i><b id="mclock">00:00:00</b></span>
+    <span><i>UTC</i><b id="utc">--:--:--</b></span>
+  </div>
+  <div class="status">
+    <span id="phase" class="phase"></span>
+    <span id="conn" class="pill wait">menyambung</span>
+  </div>
+</header>
+
+<div class="dock">
+  <button id="fit" class="fit" type="button">Lihat semua</button>
+  <ul class="legend" aria-label="Keterangan warna">
+    <li><i class="dot d0"></i>belum dibaca</li>
+    <li><i class="dot d1"></i>sedang dibaca</li>
+    <li><i class="dot d2"></i>aman</li>
+    <li><i class="dot d3"></i>ditandai</li>
+  </ul>
+  <p class="hint">seret node = pindahkan dan kunci · klik 2x node = lepas · klik 2x latar = reset · tombol H = panel</p>
+</div>
+
+<aside id="panel" class="panel" aria-label="Telemetri">
+  <i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i>
+  <div class="p-head">
+    <span>telemetri</span>
+    <button id="collapse" class="icon" type="button" aria-label="Sembunyikan panel">▸</button>
+  </div>
+
+  <div class="stats">
+    <div class="score"><span id="grade" class="g">-</span><span id="score">skor belum ada</span></div>
+    <div class="counts">
+      <div class="count"><span id="c2" class="num l2">0</span><span>kritis</span></div>
+      <div class="count"><span id="c1" class="num l1">0</span><span>sedang</span></div>
+      <div class="count"><span id="c0" class="num l0">0</span><span>info</span></div>
+    </div>
+  </div>
+
+  <section class="feed">
+    <h2><i class="live" aria-hidden="true"></i>siaran langsung</h2>
+    <div id="log" class="log" role="log" aria-live="off"></div>
+  </section>
+
+  <section id="intelBox" class="intel" hidden>
+    <h2>serangan masuk</h2>
+    <div id="intelTotal" class="sub"></div>
+    <ul id="intelList" class="mini"></ul>
+  </section>
+
+  <section id="planBox" class="plan" hidden>
+    <h2>urutan perbaikan (agent)</h2>
+    <ol id="plan"></ol>
+  </section>
+
+  <section class="finds">
+    <h2>temuan terbuka</h2>
+    <ul id="open" class="open"></ul>
+    <div class="dl">
+      <a class="btn" href="/report.json" download>JSON</a>
+      <a class="btn" href="/report.md" download>Markdown</a>
+    </div>
+  </section>
+</aside>
+<button id="reopen" class="reopen" type="button" hidden>◂ telemetri</button>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+const requestId = "550e8400-e29b-41d4-a716-446655440000";
+const traceId = "4b2f8b1c9e0a7d6f5c3b2a190887766554433221";
