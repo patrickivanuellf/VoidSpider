@@ -1,6 +1,6 @@
 # Laba-laba pemindai
 <p align="center">
-  <video src="./voidspider_cartoon.mp4" controls width="100%" autoplay muted loop></video>
+  <video src="https://raw.githubusercontent.com/patrickivanuellf/VoidSpider/main/voidspider_cartoon.mp4" controls width="100%" autoplay muted loop></video>
 </p>
 
 Pemindai audit keamanan untuk **situs web** dan **berkas lokal** milikmu sendiri. Server Node.js memindai target terus-menerus, memberi skor keamanan beserta saran perbaikan, lalu menyiarkan hasilnya lewat SSE ke dasbor berisi graf dan laba-laba bergaris geometri. Setiap kaki laba-laba menjangkau halaman atau berkas yang sedang dipindai server.
